@@ -5,57 +5,64 @@ var img_height = 100;
 var img_image;
 var img_x = 100;
 var img_y = 100;
+var new_image;
 
 function add() {
-	var img_imgTag = new Image(); 
-	var img_imgTag.onload = uploadimg;
-	var img_imgTag.src = img_image;
+	new_image= new Image(); 
+	new_image.onload = uploadimg;
+	new_image.src = img_image;
 }
 
 function uploadimg() {
 
-	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
+	contexto.drawImage(new_image, img_x, img_y, img_width, img_height);
 }
 
-window.addEventListener("keydown, my_keydown");
+window.addEventListener("keydown", my_keydown);
 
 function my_keydown(e){
 	keyPressed = e.keyCode;
 	console.log(keyPressed);
 		if((keyPressed >=97 && keyPressed<=122)|| (keyPressed >=65 && keyPressed<=90)){
 			aplhabetkey();
-			document.getElementById("d1").innerHTML="Voce precionou uma tecla alfabetica";
+			document.getElementById("d1").innerHTML="Voce pressionou uma tecla alfabetica";
 			console.log("alphabet key");
-			nunberkey();
-			document.getElementById("d1").innerHTML="Voce precionou uma tecla numerica";
-			console.log("nuber key");
+		}else if (keyPressed >=48 && keyPressed<=57){
+			numberkey();
+			document.getElementById("d1").innerHTML="Voce pressionou uma tecla numerica";
+			console.log("number key");
+		}else if (keyPressed >=37 && keyPressed<=40){
 			arrowkey();
-			document.getElementById("d1").innerHTML="Voce precionou uma tecla direcional";
+			document.getElementById("d1").innerHTML="Voce pressionou uma tecla direcional";
 			console.log("arrow key");
+		}else if ((keyPressed ==17)||(keyPressed ==18)||(keyPressed==27)){
 			specialkey();
-			document.getElementById("d1").innerHTML="Voce precionou uma tecla especial";
+			document.getElementById("d1").innerHTML="Voce pressionou Ctrl/Esc/Alt";
 			console.log("special key");
+		}else{
+			otherkey();
+			document.getElementById("d1").innerHTML="Voce pressionou outras teclas";
 		}
-		otherkey();
-		document.getElementById("d1").innerHTML="You pressed symbol or other key";
-	}
 }
 
 function aplhabetkey(){
-	img_image="alfabeto.png"
-
+	img_image="alfabeto.png";
+	add();
 }
 function numberkey(){
-	img_image="números.png"
+	img_image="número.png";
+	add();
 }
 function arrowkey(){
-	img_image="direcional.png"
+	img_image="direcional.png";
+	add();
 }
 function specialkey(){
-	img_image="especial.png"
+	img_image="especial.png";
+	add();
 }
 function otherkey()
 {
-	img_image="otherkey.png";
+	img_image="outras.png";
 	add();
 }
